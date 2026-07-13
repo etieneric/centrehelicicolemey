@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
+import { useQuery } from "@tanstack/react-query";
 import {
   Phone, MapPin, Mail, Facebook, Youtube, Menu, X, Leaf,
   Shell, Egg, Sprout, GraduationCap, Users, Award, ArrowRight,
@@ -13,6 +14,7 @@ import im1Asset from "@/assets/im1.jpg.asset.json";
 import im2Asset from "@/assets/im2.jpg.asset.json";
 import im3Asset from "@/assets/im3.jpg.asset.json";
 import im4Asset from "@/assets/im4.jpg.asset.json";
+import { getChannelVideos, type YoutubeVideo } from "@/lib/youtube.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -305,25 +307,41 @@ function Pharmacopee() {
   );
 }
 
+function formatDate(iso: string): string {
+  if (!iso) return "";
+  try {
+    return new Intl.DateTimeFormat("fr-FR", {
+      day: "numeric", month: "long", year: "numeric",
+    }).format(new Date(iso));
+  } catch {
+    return "";
+  }
+}
+
 function Videos() {
-  const thumbs = [
-    { title: "Visite du Centre Hélicicole Meye", img: im1Asset.url, duration: "12:04" },
-    { title: "Élevage des Achatina — techniques", img: snailsAsset.url, duration: "08:47" },
-    { title: "Interview du fondateur Daniel Meye", img: im3Asset.url, duration: "15:22" },
-    { title: "Cérémonie & Grand Prix d'Excellence", img: im4Asset.url, duration: "06:31" },
-    { title: "Formation des jeunes à Messamendongo", img: im2Asset.url, duration: "10:15" },
-    { title: "Pharmacopée traditionnelle du C.H.M", img: founderAsset.url, duration: "09:58" },
-  ];
+  const { data, isLoading, isError } = useQuery<YoutubeVideo[]>({
+    queryKey: ["yt-videos"],
+    queryFn: () => getChannelVideos(),
+    staleTime: 1000 * 60 * 30,
+  });
+
+  const videos = data ?? [];
+
   return (
     <section id="videos" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <span className="eyebrow">Chaîne YouTube</span>
-            <h2 className="section-title mt-3">C.H.M en Vidéo.</h2>
+            <span className="eyebrow inline-flex items-center gap-2">
+              <Youtube className="h-3.5 w-3.5" /> Notre chaîne YouTube
+            </span>
+            <h2 className="section-title mt-3">
+              Découvrez nos <em className="not-italic text-forest">vidéos de terrain</em>.
+            </h2>
             <p className="mt-4 text-muted-foreground">
-              Découvrez les coulisses du Centre, les formations et les récoltes.
-              Abonnez-vous à <span className="font-medium text-forest-deep">@c.h.mcentrehelicicolemeye8908</span>.
+              Formations, visites de fermes et témoignages — suivez le quotidien
+              du Centre Hélicicole Meye directement sur notre chaîne{" "}
+              <span className="font-medium text-forest-deep">@c.h.mcentrehelicicolemeye8908</span>.
             </p>
           </div>
           <a href={YOUTUBE_URL} target="_blank" rel="noreferrer" className="btn-terracotta inline-flex items-center gap-2">
@@ -331,26 +349,66 @@ function Videos() {
           </a>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {thumbs.map((v, i) => (
-            <a key={i} href={YOUTUBE_URL} target="_blank" rel="noreferrer"
-               className="group block overflow-hidden rounded-3xl bg-card shadow-md ring-1 ring-forest/5 transition hover:-translate-y-1 hover:shadow-xl">
-              <div className="relative aspect-video overflow-hidden">
-                <img src={v.img} alt={v.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-forest-deep/20 transition group-hover:bg-forest-deep/40" />
-                <PlayCircle className="absolute inset-0 m-auto h-16 w-16 text-cream drop-shadow-xl transition group-hover:scale-110" strokeWidth={1.25} />
-                <span className="absolute bottom-3 right-3 rounded-md bg-forest-deep/80 px-2 py-0.5 text-xs font-medium text-cream">{v.duration}</span>
-              </div>
-              <div className="p-5">
-                <h3 className="font-serif text-lg leading-snug text-forest-deep line-clamp-2">{v.title}</h3>
-                <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
-                  <img src={logoAsset.url} alt="" className="h-5 w-5 rounded-full object-cover" />
-                  Centre Hélicicole Meye
+        {isLoading && (
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="overflow-hidden rounded-3xl bg-card ring-1 ring-forest/5">
+                <div className="aspect-video animate-pulse bg-cream-deep" />
+                <div className="space-y-2 p-5">
+                  <div className="h-4 w-3/4 animate-pulse rounded bg-cream-deep" />
+                  <div className="h-3 w-1/3 animate-pulse rounded bg-cream-deep" />
                 </div>
               </div>
+            ))}
+          </div>
+        )}
+
+        {!isLoading && videos.length === 0 && (
+          <div className="mt-14 shell-card p-10 text-center">
+            <Youtube className="mx-auto h-10 w-10 text-terracotta" />
+            <p className="mt-4 text-muted-foreground">
+              {isError
+                ? "Les vidéos ne peuvent pas être chargées pour le moment."
+                : "Aucune vidéo disponible pour l'instant."}
+            </p>
+            <a href={YOUTUBE_URL} target="_blank" rel="noreferrer" className="btn-primary mt-6 inline-flex items-center gap-2">
+              Visiter la chaîne <ArrowRight className="h-4 w-4" />
             </a>
-          ))}
-        </div>
+          </div>
+        )}
+
+        {videos.length > 0 && (
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {videos.slice(0, 9).map((v) => (
+              <a key={v.id} href={v.url} target="_blank" rel="noreferrer"
+                 className="group block overflow-hidden rounded-3xl bg-card shadow-md ring-1 ring-forest/5 transition hover:-translate-y-1 hover:shadow-xl">
+                <div className="relative aspect-video overflow-hidden">
+                  <img
+                    src={v.thumbnail}
+                    alt={v.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = `https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`;
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-forest-deep/20 transition group-hover:bg-forest-deep/40" />
+                  <PlayCircle className="absolute inset-0 m-auto h-16 w-16 text-cream drop-shadow-xl transition group-hover:scale-110" strokeWidth={1.25} />
+                </div>
+                <div className="p-5">
+                  <h3 className="font-serif text-lg leading-snug text-forest-deep line-clamp-2">{v.title}</h3>
+                  <div className="mt-2 flex items-center justify-between gap-2 text-xs text-muted-foreground">
+                    <span className="flex items-center gap-2">
+                      <img src={logoAsset.url} alt="" className="h-5 w-5 rounded-full object-cover" />
+                      Centre Hélicicole Meye
+                    </span>
+                    {v.published && <span>{formatDate(v.published)}</span>}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
