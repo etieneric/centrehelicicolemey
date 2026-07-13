@@ -33,6 +33,7 @@ const FACEBOOK_URL = "https://facebook.com/centrehelicicolemeye";
 
 const NAV = [
   { label: "Accueil", href: "#accueil" },
+  { label: "Fondateur", href: "#fondateur" },
   { label: "Formations", href: "#formations" },
   { label: "Produits", href: "#produits" },
   { label: "Pharmacopée", href: "#pharmacopee" },
