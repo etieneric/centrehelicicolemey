@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import type { ReactNode } from "react";
 
@@ -37,14 +37,14 @@ export function LegalShell({
         <h1 className="section-title mt-3">{title}</h1>
         <p className="mt-3 text-sm text-muted-foreground">Dernière mise à jour&nbsp;: {updated}</p>
 
-        <div className="legal-prose mt-10">{children}</div>
+        <div className="legal-prose mt-10 space-y-8 text-[15px] leading-relaxed text-forest-deep/85">
+          {children}
+        </div>
       </article>
+
+      <footer className="border-t border-border/60 py-8 text-center text-xs text-muted-foreground">
+        © {new Date().getFullYear()} Centre Hélicicole Meye — Messamendongo, Yaoundé.
+      </footer>
     </main>
   );
 }
-
-// A dummy route export so this file registers cleanly under /routes.
-// The shell itself is used by the actual legal routes.
-export const Route = createFileRoute("/_legal-shell")({
-  component: () => null,
-});
