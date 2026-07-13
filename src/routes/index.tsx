@@ -579,11 +579,169 @@ function Footer() {
   );
 }
 
+function Founder() {
+  const pillars = [
+    {
+      icon: Shell,
+      title: "Héliciculture",
+      desc: "Une activité rentable et accessible, moteur de sécurité alimentaire et de création d'emplois.",
+    },
+    {
+      icon: Sprout,
+      title: "Gestion écologique des déchets",
+      desc: "Les déchets organiques urbains deviennent une ressource nutritive pour les élevages.",
+    },
+    {
+      icon: Leaf,
+      title: "Foresterie urbaine",
+      desc: "Plantation d'arbres et espaces verts pour restaurer la biodiversité en ville.",
+    },
+  ];
+
+  return (
+    <section id="fondateur" className="relative overflow-hidden py-24 md:py-32">
+      <div className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-forest/5 blur-3xl" />
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
+          {/* Portrait & quote */}
+          <div className="lg:col-span-5">
+            <div className="sticky top-32">
+              <div className="relative">
+                <div className="overflow-hidden rounded-[2.5rem] shadow-2xl ring-1 ring-forest/10">
+                  <img
+                    src={founderAsset.url}
+                    alt="MEYE ME ZO'O Daniel, fondateur du Centre Hélicicole Meye"
+                    className="h-[520px] w-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -right-6 hidden max-w-xs rounded-3xl bg-forest-deep p-6 text-cream shadow-xl md:block">
+                  <div className="text-4xl leading-none text-terracotta-soft">“</div>
+                  <p className="mt-1 font-serif text-lg leading-snug">
+                    L'héliciculture est une opportunité encore largement
+                    sous-exploitée en Afrique.
+                  </p>
+                  <div className="mt-3 text-xs uppercase tracking-widest text-cream/60">
+                    Daniel Meye
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-10 grid grid-cols-3 gap-3">
+                <div className="shell-card p-4 text-center">
+                  <Award className="mx-auto h-5 w-5 text-terracotta" />
+                  <div className="mt-2 font-serif text-sm text-forest-deep">Grand Prix</div>
+                  <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Excellence Africaine</div>
+                </div>
+                <div className="shell-card p-4 text-center">
+                  <Users className="mx-auto h-5 w-5 text-terracotta" />
+                  <div className="mt-2 font-serif text-sm text-forest-deep">Femmes & Jeunes</div>
+                  <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Autonomisation</div>
+                </div>
+                <div className="shell-card p-4 text-center">
+                  <Leaf className="mx-auto h-5 w-5 text-terracotta" />
+                  <div className="mt-2 font-serif text-sm text-forest-deep">Agro-écologie</div>
+                  <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Yaoundé</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Biography & vision */}
+          <div className="lg:col-span-7">
+            <span className="eyebrow">Biographie & Vision du fondateur</span>
+            <h2 className="section-title mt-3">
+              MEYE ME ZO'O Daniel, pionnier de l'<em className="not-italic text-terracotta">héliciculture</em> camerounaise.
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+              Acteur de l'autonomisation des femmes et des jeunes à Yaoundé,
+              lauréat du Grand Prix d'Excellence Africaine en élevage des
+              escargots, Daniel Meye a transformé une activité longtemps jugée
+              marginale en un véritable moteur d'impact social et
+              environnemental.
+            </p>
+
+            <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-forest-deep/85">
+              <p>
+                Directeur fondateur du <strong className="text-forest-deep">Centre Hélicicole Meye — Cameroun</strong>,
+                il développe depuis plusieurs années des initiatives qui
+                dépassent largement le cadre de la simple production
+                agropastorale. Dans un contexte où l'entrepreneuriat agricole
+                devient un levier essentiel de développement durable, il
+                s'impose comme l'une des figures les plus innovantes de
+                l'élevage d'escargots au Cameroun.
+              </p>
+              <p>
+                Au cœur de Yaoundé, il mène un combat discret mais déterminant :
+                initier les femmes et les jeunes aux techniques modernes
+                d'élevage d'escargots et à la gestion de micro-projets
+                agropastoraux. Objectif clair : leur permettre d'acquérir des
+                compétences génératrices de revenus et de retrouver une
+                stabilité de subsistance. Plusieurs bénéficiaires ont déjà
+                lancé leurs propres exploitations.
+              </p>
+            </div>
+
+            {/* Three pillars */}
+            <div className="mt-10">
+              <div className="eyebrow mb-4">Un modèle intégré, trois piliers</div>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {pillars.map((p) => (
+                  <div key={p.title} className="shell-card p-6">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-forest/10 text-forest">
+                      <p.icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="mt-4 font-serif text-lg text-forest-deep">{p.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-10 space-y-5 text-[15px] leading-relaxed text-forest-deep/85">
+              <p>
+                Ce système circulaire permet non seulement de produire des
+                escargots destinés à la consommation et au commerce, mais aussi
+                de réduire les déchets urbains et de contribuer à la
+                reforestation en milieu urbain.
+              </p>
+              <p>
+                Pour Daniel Meye, l'héliciculture — facile à mettre en œuvre,
+                peu coûteuse et respectueuse de l'environnement — constitue une
+                solution stratégique pour lutter contre le chômage et renforcer
+                la sécurité alimentaire. À travers son centre, il ambitionne de
+                former davantage de jeunes et de femmes, tout en développant
+                des partenariats avec des institutions, ONG et collectivités
+                locales.
+              </p>
+              <p className="border-l-2 border-terracotta pl-5 font-serif text-lg italic text-forest-deep">
+                Son parcours illustre comment innovation, engagement social et
+                respect de l'environnement peuvent se conjuguer pour créer un
+                impact durable — et démontre qu'un autre modèle de
+                développement est possible.
+              </p>
+            </div>
+
+            <div className="mt-10 flex flex-wrap gap-3">
+              <a href="#formations" className="btn-primary inline-flex items-center gap-2">
+                Rejoindre une formation <ArrowRight className="h-4 w-4" />
+              </a>
+              <a href="#contact" className="btn-terracotta inline-flex items-center gap-2">
+                Devenir partenaire
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   return (
     <main className="min-h-screen">
       <Nav />
       <Hero />
+      <Founder />
       <Productions />
       <Formations />
       <Pharmacopee />
