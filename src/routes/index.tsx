@@ -15,9 +15,10 @@ import im1Asset from "@/assets/im1.jpg.asset.json";
 import im2Asset from "@/assets/im2.jpg.asset.json";
 import im3Asset from "@/assets/im3.jpg.asset.json";
 import im4Asset from "@/assets/im4.jpg.asset.json";
-import archachatinaAsset from "@/assets/archachatina.jpg.asset.json";
-import achatinaAchatinaAsset from "@/assets/achatina-achatina.jpg.asset.json";
-import achatinaFulicaAsset from "@/assets/achatina-fulica.jpg.asset.json";
+import archachatinaAsset from "@/assets/variete-1.png.asset.json";
+import achatinaAchatinaAsset from "@/assets/variete-2.png.asset.json";
+import achatinaFulicaAsset from "@/assets/variete-3.png.asset.json";
+import oeufsAsset from "@/assets/oeufs.png.asset.json";
 import { getChannelVideos, type YoutubeVideo } from "@/lib/youtube.functions";
 
 export const Route = createFileRoute("/")({
@@ -244,6 +245,30 @@ function Varietes() {
             </article>
           ))}
         </div>
+
+        {/* Œufs & Reproduction */}
+        <figure className="mt-14 grid gap-8 overflow-hidden rounded-[2rem] border border-forest/10 bg-card md:grid-cols-2">
+          <div className="relative h-72 md:h-full">
+            <img
+              src={oeufsAsset.url}
+              alt="Œufs d'escargot géant africain en phase de ponte"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <figcaption className="flex flex-col justify-center p-8 md:p-10">
+            <span className="eyebrow">Œufs & Reproduction</span>
+            <h3 className="mt-3 font-serif text-2xl text-forest-deep md:text-3xl">
+              Une ponte abondante, gage d'un cheptel qui se multiplie.
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Nos géniteurs pondent des grappes d'œufs nacrés dans une litière
+              tempérée et humide. Une reproduction maîtrisée qui garantit un
+              renouvellement continu du cheptel et une rentabilité durable de
+              l'élevage.
+            </p>
+          </figcaption>
+        </figure>
 
         {/* Part 2 — Virtues */}
         <div className="mt-28 max-w-3xl">
