@@ -15,9 +15,10 @@ import im1Asset from "@/assets/im1.jpg.asset.json";
 import im2Asset from "@/assets/im2.jpg.asset.json";
 import im3Asset from "@/assets/im3.jpg.asset.json";
 import im4Asset from "@/assets/im4.jpg.asset.json";
-import archachatinaAsset from "@/assets/archachatina.jpg.asset.json";
-import achatinaAchatinaAsset from "@/assets/achatina-achatina.jpg.asset.json";
-import achatinaFulicaAsset from "@/assets/achatina-fulica.jpg.asset.json";
+import archachatinaAsset from "@/assets/variete-1.png.asset.json";
+import achatinaAchatinaAsset from "@/assets/variete-2.png.asset.json";
+import achatinaFulicaAsset from "@/assets/variete-3.png.asset.json";
+import oeufsAsset from "@/assets/oeufs.png.asset.json";
 import { getChannelVideos, type YoutubeVideo } from "@/lib/youtube.functions";
 
 export const Route = createFileRoute("/")({
