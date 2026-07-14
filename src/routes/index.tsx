@@ -170,6 +170,188 @@ function Hero() {
   );
 }
 
+function Varietes() {
+  const varieties = [
+    {
+      img: archachatinaAsset.url,
+      latin: "Archachatina marginata",
+      nick: "Le « Gros Escargot Noir »",
+      desc: "Le colosse de l'héliciculture au Cameroun. Grosse coquille à bout arrondi, chair très ferme et prisée. Idéal pour un élevage robuste.",
+    },
+    {
+      img: achatinaAchatinaAsset.url,
+      latin: "Achatina achatina",
+      nick: "L'Escargot Tigre ou « Gros Rouge »",
+      desc: "Le plus grand escargot terrestre au monde. Coquille pointue avec des zébrures jaunes-orangées. Excellent rendement de chair.",
+    },
+    {
+      img: achatinaFulicaAsset.url,
+      latin: "Achatina fulica",
+      nick: "L'Escargot de Jardin",
+      desc: "Croissance et reproduction ultra-rapides. Parfait pour démarrer rapidement sa production et multiplier son cheptel à moindre coût.",
+    },
+  ];
+
+  const virtues = [
+    { icon: Baby, title: "Accouchement & Gynécologie", desc: "Recommandé par les gynécologues pour faciliter l'accouchement." },
+    { icon: HeartPulse, title: "Ulcère & Digestion", desc: "Les acides aminés de la chair contribuent à la reconstitution des tissus gastriques et à la guérison de l'ulcère d'estomac." },
+    { icon: Dumbbell, title: "Richesse en Protéines", desc: "Teneur en protéines identique à celle du poulet — idéal contre les carences en fer (anémie) et en protéines." },
+    { icon: Sprout, title: "Maigreur & Diététique", desc: "Très peu calorique : parfait pour les sportifs (récupération) et les personnes âgées." },
+    { icon: Sparkles, title: "Bave d'Escargot — Beauté", desc: "Riche en collagène et élastine : élimine la cellulite, régénère la peau et embellit le teint." },
+    { icon: Droplet, title: "Articulations & Régénération", desc: "Soulage les articulations, apaise les inflammations et favorise la cicatrisation cutanée." },
+  ];
+
+  return (
+    <section id="varietes" className="relative overflow-hidden py-24 md:py-32">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-cream via-cream to-cream-deep/40" />
+
+      <div className="mx-auto max-w-7xl px-4">
+        {/* Part 1 — Varieties */}
+        <div className="max-w-3xl">
+          <span className="eyebrow">Nos Variétés, Bienfaits & Opportunités</span>
+          <h2 className="section-title mt-3">Les 3 Variétés d'Escargots Géants d'Afrique cultivés au Cameroun.</h2>
+          <p className="mt-4 text-muted-foreground">
+            Trois espèces emblématiques, sélectionnées pour leur robustesse,
+            leur rendement et leur adaptation au climat équatorial camerounais.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {varieties.map((v, i) => (
+            <article
+              key={v.latin}
+              className="shell-card group overflow-hidden p-0 transition duration-500 hover:-translate-y-2"
+            >
+              <div className="relative h-72 overflow-hidden">
+                <img
+                  src={v.img}
+                  alt={`${v.latin} — ${v.nick}`}
+                  loading="lazy"
+                  width={1024}
+                  height={1024}
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/70 via-forest-deep/10 to-transparent" />
+                <div className="absolute left-5 top-5 rounded-full bg-cream/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-forest-deep backdrop-blur">
+                  Variété {i + 1}
+                </div>
+              </div>
+              <div className="p-7">
+                <h3 className="font-serif text-2xl italic text-forest-deep">{v.latin}</h3>
+                <div className="mt-1 text-sm font-medium text-terracotta">{v.nick}</div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{v.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* Part 2 — Virtues */}
+        <div className="mt-28 max-w-3xl">
+          <span className="eyebrow">Vertus & Bienfaits</span>
+          <h2 className="section-title mt-3">Les Vertus Exceptionnelles de l'Escargot Géant.</h2>
+          <p className="mt-4 text-muted-foreground">
+            Un aliment-médicament reconnu par la médecine traditionnelle et
+            confirmé par la science moderne&nbsp;: de la maternité à la beauté
+            de la peau, ses bienfaits touchent tout le corps.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {virtues.map((v) => (
+            <div
+              key={v.title}
+              className="group relative overflow-hidden rounded-3xl border border-forest/10 bg-card p-7 transition hover:border-terracotta/40 hover:shadow-xl"
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-terracotta/10 text-terracotta transition group-hover:bg-terracotta group-hover:text-cream">
+                <v.icon className="h-6 w-6" />
+              </div>
+              <h3 className="mt-6 font-serif text-xl text-forest-deep">{v.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{v.desc}</p>
+              <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-terracotta/5 transition group-hover:bg-terracotta/10" />
+            </div>
+          ))}
+        </div>
+
+        {/* Part 3 — Economic Opportunity */}
+        <div className="relative mt-28 overflow-hidden rounded-[2.5rem]">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-forest via-forest-deep to-forest" />
+          <svg className="pointer-events-none absolute -right-16 -top-16 h-96 w-96 text-terracotta/15" viewBox="0 0 200 200" fill="currentColor" aria-hidden>
+            <circle cx="100" cy="100" r="80" />
+          </svg>
+          <svg className="pointer-events-none absolute -bottom-20 -left-10 h-80 w-80 text-cream/5" viewBox="0 0 200 200" fill="currentColor" aria-hidden>
+            <path d="M100 10c20 40 60 60 90 70-30 10-70 30-90 70-20-40-60-60-90-70 30-10 70-30 90-70z" />
+          </svg>
+
+          <div className="relative grid gap-12 p-10 text-cream md:p-16 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-cream/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-terracotta-soft backdrop-blur">
+                <Coins className="h-3.5 w-3.5" /> Opportunité économique
+              </div>
+              <h2 className="mt-5 font-serif text-4xl leading-tight md:text-6xl">
+                Une Opportunité Unique&nbsp;: <br />
+                <span className="text-terracotta-soft">L'Élevage à 0 FCFA.</span>
+              </h2>
+              <p className="mt-6 max-w-xl text-lg text-cream/85">
+                Générer des revenus grâce aux escargots géants d'Afrique{" "}
+                <strong className="text-cream">avec 0 FCFA de budget de départ</strong>.
+                Un modèle inclusif, écologique et rentable, à la portée de tous.
+              </p>
+
+              <div className="mt-10 flex flex-wrap gap-4">
+                <a href="#formations" className="btn-terracotta inline-flex items-center gap-2">
+                  Se former gratuitement <ChevronRight className="h-4 w-4" />
+                </a>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 rounded-full border border-cream/30 px-6 py-3 text-sm font-medium text-cream transition hover:bg-cream/10"
+                >
+                  Démarrer mon élevage <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+
+            <div className="grid gap-4 lg:col-span-5">
+              <div className="rounded-2xl border border-cream/15 bg-cream/5 p-6 backdrop-blur">
+                <div className="flex items-center gap-3">
+                  <Globe2 className="h-5 w-5 text-terracotta-soft" />
+                  <div className="font-serif text-lg">Marché continental</div>
+                </div>
+                <p className="mt-2 text-sm text-cream/75">
+                  Très consommé en Afrique de l'Ouest (Côte d'Ivoire, Nigeria,
+                  Bénin) et partout sur le continent&nbsp;: une demande soutenue,
+                  toute l'année.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-cream/15 bg-cream/5 p-6 backdrop-blur">
+                <div className="flex items-center gap-3">
+                  <HandHeart className="h-5 w-5 text-terracotta-soft" />
+                  <div className="font-serif text-lg">Impact social</div>
+                </div>
+                <p className="mt-2 text-sm text-cream/75">
+                  Une activité dont la principale main-d'œuvre est constituée de
+                  femmes. Elle génère des emplois durables et lutte activement
+                  contre la pauvreté.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-cream/15 bg-cream/5 p-6 backdrop-blur">
+                <div className="flex items-center gap-3">
+                  <Sprout className="h-5 w-5 text-terracotta-soft" />
+                  <div className="font-serif text-lg">Zéro investissement</div>
+                </div>
+                <p className="mt-2 text-sm text-cream/75">
+                  Récupération de géniteurs, matériaux locaux, alimentation
+                  issue des déchets verts&nbsp;: un cycle vertueux qui démarre
+                  sans capital.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Productions() {
   const items = [
     { icon: Shell, title: "Chair d'Escargots Géants", desc: "Fraîche ou transformée, issue d'élevages sélectionnés selon les meilleures pratiques héliciculteurs." },
