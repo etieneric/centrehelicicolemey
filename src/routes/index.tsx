@@ -784,7 +784,7 @@ function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-cream/10 pt-6 text-xs text-cream/60 md:flex-row">
-          <div>© {new Date().getFullYear()} Centre Hélicicole Meye. Tous droits réservés.</div>
+          <div>© {new Date().getFullYear()} Bimedia Connect Agency. Tous droits réservés.</div>
           <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             <a href="/confidentialite" className="hover:text-terracotta-soft">Confidentialité</a>
             <a href="/mentions-legales" className="hover:text-terracotta-soft">Mentions légales</a>
