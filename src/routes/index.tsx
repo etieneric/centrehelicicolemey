@@ -4,7 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import {
   Phone, MapPin, Mail, Facebook, Youtube, Menu, X, Leaf,
   Shell, Egg, Sprout, GraduationCap, Users, Award, ArrowRight,
-  PlayCircle, ChevronRight,
+  PlayCircle, ChevronRight, Baby, HeartPulse, Sparkles, Dumbbell,
+  Droplet, Coins, HandHeart, Globe2,
 } from "lucide-react";
 
 import logoAsset from "@/assets/logo.jpeg.asset.json";
@@ -14,6 +15,9 @@ import im1Asset from "@/assets/im1.jpg.asset.json";
 import im2Asset from "@/assets/im2.jpg.asset.json";
 import im3Asset from "@/assets/im3.jpg.asset.json";
 import im4Asset from "@/assets/im4.jpg.asset.json";
+import archachatinaAsset from "@/assets/archachatina.jpg.asset.json";
+import achatinaAchatinaAsset from "@/assets/achatina-achatina.jpg.asset.json";
+import achatinaFulicaAsset from "@/assets/achatina-fulica.jpg.asset.json";
 import { getChannelVideos, type YoutubeVideo } from "@/lib/youtube.functions";
 
 export const Route = createFileRoute("/")({
@@ -34,6 +38,7 @@ const FACEBOOK_URL = "https://facebook.com/centrehelicicolemeye";
 const NAV = [
   { label: "Accueil", href: "#accueil" },
   { label: "Fondateur", href: "#fondateur" },
+  { label: "Variétés", href: "#varietes" },
   { label: "Formations", href: "#formations" },
   { label: "Produits", href: "#produits" },
   { label: "Pharmacopée", href: "#pharmacopee" },
@@ -746,6 +751,7 @@ function Index() {
       <Nav />
       <Hero />
       <Founder />
+      <Varietes />
       <Productions />
       <Formations />
       <Pharmacopee />
