@@ -8,24 +8,25 @@ import {
   Droplet, Coins, HandHeart, Globe2,
 } from "lucide-react";
 
-import logoAsset from "@/assets/logo.jpeg.asset.json";
-import founderAsset from "@/assets/founder.png.asset.json";
-import snailsAsset from "@/assets/snails.jpg.asset.json";
-import im1Asset from "@/assets/im1.jpg.asset.json";
-import im2Asset from "@/assets/im2.jpg.asset.json";
-import im3Asset from "@/assets/im3.jpg.asset.json";
-import im4Asset from "@/assets/im4.jpg.asset.json";
-import archachatinaAsset from "@/assets/variete-1.png.asset.json";
-import achatinaAchatinaAsset from "@/assets/variete-2.png.asset.json";
-import achatinaFulicaAsset from "@/assets/variete-3.png.asset.json";
-import oeufsAsset from "@/assets/oeufs.png.asset.json";
+// Imports d'images physiques directes (retrait des extensions .asset.json)
+import logoAsset from "@/assets/logo.jpeg";
+import founderAsset from "@/assets/founder.png";
+import snailsAsset from "@/assets/snails.jpg";
+import im1Asset from "@/assets/im1.jpg";
+import im2Asset from "@/assets/im2.jpg";
+import im3Asset from "@/assets/im3.jpg";
+import im4Asset from "@/assets/im4.jpg";
+import archachatinaAsset from "@/assets/variete-1.png";
+import achatinaAchatinaAsset from "@/assets/variete-2.png";
+import achatinaFulicaAsset from "@/assets/variete-3.png";
+import oeufsAsset from "@/assets/oeufs.png";
 import { getChannelVideos, type YoutubeVideo } from "@/lib/youtube.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { property: "og:image", content: snailsAsset.url },
-      { name: "twitter:image", content: snailsAsset.url },
+      { property: "og:image", content: snailsAsset },
+      { name: "twitter:image", content: snailsAsset },
     ],
   }),
   component: Index,
@@ -62,7 +63,7 @@ function Nav() {
       <div className="mx-auto max-w-7xl px-4">
         <div className="glass-nav flex items-center justify-between rounded-full px-4 py-2.5 md:px-6">
           <a href="#accueil" className="flex items-center gap-2.5">
-            <img src={logoAsset.url} alt="Logo C.H.M" className="h-10 w-10 rounded-full object-cover ring-1 ring-forest/20" />
+            <img src={logoAsset} alt="Logo C.H.M" className="h-10 w-10 rounded-full object-cover ring-1 ring-forest/20" />
             <div className="leading-tight">
               <div className="font-serif text-lg font-semibold text-forest-deep">C.H.M</div>
               <div className="hidden text-[10px] uppercase tracking-widest text-muted-foreground md:block">Centre Hélicicole Meye</div>
@@ -153,11 +154,11 @@ function Hero() {
           <div className="reveal lg:col-span-5">
             <div className="relative">
               <div className="relative overflow-hidden rounded-[2.5rem] shadow-2xl ring-1 ring-forest/10">
-                <img src={snailsAsset.url} alt="Escargots géants d'Afrique du Centre Hélicicole Meye" className="h-[520px] w-full object-cover" />
+                <img src={snailsAsset} alt="Escargots géants d'Afrique du Centre Hélicicole Meye" className="h-[520px] w-full object-cover" />
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-forest-deep/70 to-transparent" />
               </div>
               <div className="absolute -bottom-8 -left-6 w-44 overflow-hidden rounded-[2rem] shadow-2xl ring-4 ring-cream md:w-52">
-                <img src={founderAsset.url} alt="MEYE ME ZO'O Daniel, fondateur du C.H.M" className="h-56 w-full object-cover md:h-64" />
+                <img src={founderAsset} alt="MEYE ME ZO'O Daniel, fondateur du C.H.M" className="h-56 w-full object-cover md:h-64" />
               </div>
               <div className="absolute -right-4 top-6 rounded-2xl bg-cream/90 px-4 py-3 backdrop-blur shell-card">
                 <div className="text-[10px] uppercase tracking-widest text-terracotta">Fondateur</div>
@@ -174,19 +175,19 @@ function Hero() {
 function Varietes() {
   const varieties = [
     {
-      img: archachatinaAsset.url,
+      img: archachatinaAsset,
       latin: "Archachatina marginata",
       nick: "Le « Gros Escargot Noir »",
       desc: "Le colosse de l'héliciculture au Cameroun. Grosse coquille à bout arrondi, chair très ferme et prisée. Idéal pour un élevage robuste.",
     },
     {
-      img: achatinaAchatinaAsset.url,
+      img: achatinaAchatinaAsset,
       latin: "Achatina achatina",
       nick: "L'Escargot Tigre ou « Gros Rouge »",
       desc: "Le plus grand escargot terrestre au monde. Coquille pointue avec des zébrures jaunes-orangées. Excellent rendement de chair.",
     },
     {
-      img: achatinaFulicaAsset.url,
+      img: achatinaFulicaAsset,
       latin: "Achatina fulica",
       nick: "L'Escargot de Jardin",
       desc: "Croissance et reproduction ultra-rapides. Parfait pour démarrer rapidement sa production et multiplier son cheptel à moindre coût.",
@@ -250,7 +251,7 @@ function Varietes() {
         <figure className="mt-14 grid gap-8 overflow-hidden rounded-[2rem] border border-forest/10 bg-card md:grid-cols-2">
           <div className="relative h-72 md:h-full">
             <img
-              src={oeufsAsset.url}
+              src={oeufsAsset}
               alt="Œufs d'escargot géant africain en phase de ponte"
               loading="lazy"
               className="h-full w-full object-cover"
@@ -421,10 +422,10 @@ function Formations() {
           <div className="lg:col-span-6">
             <div className="relative">
               <div className="overflow-hidden rounded-[2.5rem] ring-1 ring-forest/10 shadow-xl">
-                <img src={im1Asset.url} alt="Formation pratique au Centre Hélicicole Meye" className="h-[420px] w-full object-cover md:h-[520px]" />
+                <img src={im1Asset} alt="Formation pratique au Centre Hélicicole Meye" className="h-[420px] w-full object-cover md:h-[520px]" />
               </div>
               <div className="absolute -bottom-6 -right-6 hidden w-56 overflow-hidden rounded-3xl ring-4 ring-cream shadow-xl md:block">
-                <img src={im3Asset.url} alt="Interview de Daniel Meye" className="h-40 w-full object-cover" />
+                <img src={im3Asset} alt="Interview de Daniel Meye" className="h-40 w-full object-cover" />
               </div>
             </div>
           </div>
@@ -511,7 +512,7 @@ function Pharmacopee() {
 
           <div className="lg:col-span-5">
             <div className="overflow-hidden rounded-[2.5rem] ring-1 ring-cream/20">
-              <img src={im2Asset.url} alt="Récolte d'escargots — pharmacopée et nature" className="h-[520px] w-full object-cover" />
+              <img src={im2Asset} alt="Récolte d'escargots — pharmacopée et nature" className="h-[520px] w-full object-cover" />
             </div>
           </div>
         </div>
@@ -612,7 +613,7 @@ function Videos() {
                   <h3 className="font-serif text-lg leading-snug text-forest-deep line-clamp-2">{v.title}</h3>
                   <div className="mt-2 flex items-center justify-between gap-2 text-xs text-muted-foreground">
                     <span className="flex items-center gap-2">
-                      <img src={logoAsset.url} alt="" className="h-5 w-5 rounded-full object-cover" />
+                      <img src={logoAsset} alt="" className="h-5 w-5 rounded-full object-cover" />
                       Centre Hélicicole Meye
                     </span>
                     {v.published && <span>{formatDate(v.published)}</span>}
@@ -735,7 +736,7 @@ function Footer() {
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3">
-              <img src={logoAsset.url} alt="Logo C.H.M" className="h-12 w-12 rounded-full object-cover ring-2 ring-cream/20" />
+              <img src={logoAsset} alt="Logo C.H.M" className="h-12 w-12 rounded-full object-cover ring-2 ring-cream/20" />
               <div>
                 <div className="font-serif text-xl">Centre Hélicicole Meye</div>
                 <div className="text-xs uppercase tracking-widest text-cream/60">C.H.M · Yaoundé</div>
@@ -825,7 +826,7 @@ function Founder() {
               <div className="relative">
                 <div className="overflow-hidden rounded-[2.5rem] shadow-2xl ring-1 ring-forest/10">
                   <img
-                    src={founderAsset.url}
+                    src={founderAsset}
                     alt="MEYE ME ZO'O Daniel, fondateur du Centre Hélicicole Meye"
                     className="h-[520px] w-full object-cover"
                   />
@@ -866,7 +867,7 @@ function Founder() {
           <div className="lg:col-span-7">
             <span className="eyebrow">Biographie & Vision du fondateur</span>
             <h2 className="section-title mt-3">
-              MEYE ME ZO'O Daniel, pionnier de l'<em className="not-italic text-terracotta">héliciculture</em> camerounaise.
+              MEYE ME ZO'O Daniel, pioneer de l'<em className="not-italic text-terracotta">héliciculture</em> camerounaise.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
               Acteur de l'autonomisation des femmes et des jeunes à Yaoundé,
