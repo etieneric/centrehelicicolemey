@@ -66,6 +66,7 @@ const NAV = [
   { label: "Produits", href: "#produits" },
   { label: "Pharmacopée", href: "#pharmacopee" },
   { label: "Vidéos", href: "#videos" },
+  { label: "Galerie", href: "#galerie" },
   { label: "Contact", href: "#contact" },
 ];
 
