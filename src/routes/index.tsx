@@ -693,7 +693,16 @@ function Contact() {
               </div>
             </div>
 
-            <div className="mt-8 overflow-hidden rounded-3xl ring-1 ring-forest/10 shadow-md">
+            <div className="mt-8 overflow-hidden rounded-3xl bg-cream ring-1 ring-forest/10 shadow-md">
+              <img
+                src={bannerAsset}
+                alt="CHM-Cameroun — République du Cameroun, Siège Yaoundé, +237 699 53 47 29 / 674 67 49 02"
+                className="h-auto w-full object-contain"
+                loading="lazy"
+              />
+            </div>
+
+            <div className="mt-6 overflow-hidden rounded-3xl ring-1 ring-forest/10 shadow-md">
               <iframe
                 title="Carte Messamendongo Yaoundé"
                 src="https://www.openstreetmap.org/export/embed.html?bbox=11.55%2C3.83%2C11.65%2C3.93&layer=mapnik&marker=3.88%2C11.60"
