@@ -11,7 +11,7 @@ import {
 // Importations d'images physiques directes
 import logoAsset from "@/assets/logo.jpeg";
 import founderAsset from "@/assets/founder.png";
-import snailsAsset from "@/assets/snails.jpeg";
+import snailsAsset from "@/assets/snails.jpg";
 import im1Asset from "@/assets/im1.jpg";
 import im2Asset from "@/assets/im2.jpg";
 import im3Asset from "@/assets/im3.jpg";
