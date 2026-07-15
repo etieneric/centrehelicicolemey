@@ -8,18 +8,39 @@ import {
   Droplet, Coins, HandHeart, Globe2,
 } from "lucide-react";
 
-// Imports d'images physiques directes (retrait des extensions .asset.json)
-import logoAsset from "@/assets/logo.jpeg";
-import founderAsset from "@/assets/founder.png";
-import snailsAsset from "@/assets/snails.jpg";
-import im1Asset from "@/assets/im1.jpg";
-import im2Asset from "@/assets/im2.jpg";
-import im3Asset from "@/assets/im3.jpg";
-import im4Asset from "@/assets/im4.jpg";
-import archachatinaAsset from "@/assets/variete-1.png";
-import achatinaAchatinaAsset from "@/assets/variete-2.png";
-import achatinaFulicaAsset from "@/assets/variete-3.png";
-import oeufsAsset from "@/assets/oeufs.png";
+// Assets CDN (pointeurs .asset.json)
+import _logo from "@/assets/logo.jpeg.asset.json";
+import _founder from "@/assets/founder.png.asset.json";
+import _snails from "@/assets/snails.jpg.asset.json";
+import _im1 from "@/assets/im1.jpg.asset.json";
+import _im2 from "@/assets/im2.jpg.asset.json";
+import _im3 from "@/assets/im3.jpg.asset.json";
+import _im4 from "@/assets/im4.jpg.asset.json";
+import _v1 from "@/assets/variete-1.png.asset.json";
+import _v2 from "@/assets/variete-2.png.asset.json";
+import _v3 from "@/assets/variete-3.png.asset.json";
+import _oeufs from "@/assets/oeufs.png.asset.json";
+import _banner from "@/assets/chm-banner.jpeg.asset.json";
+import _ima6 from "@/assets/ima6.jpg.asset.json";
+import _ima7 from "@/assets/ima7.jpg.asset.json";
+import _ima8 from "@/assets/ima8.jpg.asset.json";
+import _ima9 from "@/assets/ima9.jpg.asset.json";
+const logoAsset = _logo.url;
+const founderAsset = _founder.url;
+const snailsAsset = _snails.url;
+const im1Asset = _im1.url;
+const im2Asset = _im2.url;
+const im3Asset = _im3.url;
+const im4Asset = _im4.url;
+const archachatinaAsset = _v1.url;
+const achatinaAchatinaAsset = _v2.url;
+const achatinaFulicaAsset = _v3.url;
+const oeufsAsset = _oeufs.url;
+const bannerAsset = _banner.url;
+const ima6Asset = _ima6.url;
+const ima7Asset = _ima7.url;
+const ima8Asset = _ima8.url;
+const ima9Asset = _ima9.url;
 import { getChannelVideos, type YoutubeVideo } from "@/lib/youtube.functions";
 
 export const Route = createFileRoute("/")({
@@ -45,6 +66,7 @@ const NAV = [
   { label: "Produits", href: "#produits" },
   { label: "Pharmacopée", href: "#pharmacopee" },
   { label: "Vidéos", href: "#videos" },
+  { label: "Galerie", href: "#galerie" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -671,7 +693,16 @@ function Contact() {
               </div>
             </div>
 
-            <div className="mt-8 overflow-hidden rounded-3xl ring-1 ring-forest/10 shadow-md">
+            <div className="mt-8 overflow-hidden rounded-3xl bg-cream ring-1 ring-forest/10 shadow-md">
+              <img
+                src={bannerAsset}
+                alt="CHM-Cameroun — République du Cameroun, Siège Yaoundé, +237 699 53 47 29 / 674 67 49 02"
+                className="h-auto w-full object-contain"
+                loading="lazy"
+              />
+            </div>
+
+            <div className="mt-6 overflow-hidden rounded-3xl ring-1 ring-forest/10 shadow-md">
               <iframe
                 title="Carte Messamendongo Yaoundé"
                 src="https://www.openstreetmap.org/export/embed.html?bbox=11.55%2C3.83%2C11.65%2C3.93&layer=mapnik&marker=3.88%2C11.60"
@@ -953,6 +984,119 @@ function Founder() {
   );
 }
 
+function Gallery() {
+  const photos = [
+    { src: ima6Asset, caption: "Conférence institutionnelle — présentation du C.H.M" },
+    { src: ima7Asset, caption: "Formation & remise d'escargots aux femmes entrepreneures" },
+    { src: ima8Asset, caption: "Stand du C.H.M lors d'un salon agropastoral à Yaoundé" },
+    { src: ima9Asset, caption: "Récolte au centre — bassines d'escargots géants" },
+    { src: im1Asset, caption: "Session de formation pratique" },
+    { src: im2Asset, caption: "Pharmacopée & valorisation naturelle" },
+    { src: im3Asset, caption: "Interview de Daniel Meye" },
+    { src: im4Asset, caption: "Vie du centre hélicicole" },
+  ];
+  const [open, setOpen] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (open === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(null);
+      if (e.key === "ArrowRight") setOpen((i) => (i === null ? i : (i + 1) % photos.length));
+      if (e.key === "ArrowLeft") setOpen((i) => (i === null ? i : (i - 1 + photos.length) % photos.length));
+    };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open, photos.length]);
+
+  return (
+    <section id="galerie" className="bg-cream-deep/40 py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="max-w-2xl">
+          <span className="eyebrow">Galerie photo</span>
+          <h2 className="section-title mt-3">Événements, formations & activités du C.H.M</h2>
+          <p className="mt-4 text-muted-foreground">
+            Retour en images sur les conférences, formations et moments forts
+            du Centre Hélicicole Meye. Cliquez sur une photo pour l'afficher en plein écran.
+          </p>
+        </div>
+
+        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+          {photos.map((p, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setOpen(i)}
+              className="group relative aspect-square overflow-hidden rounded-2xl bg-cream ring-1 ring-forest/10 shadow-sm transition hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-terracotta"
+            >
+              <img
+                src={p.src}
+                alt={p.caption}
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest-deep/80 via-forest-deep/20 to-transparent p-3 opacity-0 transition group-hover:opacity-100">
+                <p className="text-xs text-cream line-clamp-2">{p.caption}</p>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {open !== null && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-forest-deep/95 p-4 backdrop-blur-sm"
+          onClick={() => setOpen(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            type="button"
+            aria-label="Fermer"
+            onClick={() => setOpen(null)}
+            className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-cream/10 text-cream ring-1 ring-cream/30 backdrop-blur hover:bg-cream/20"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            aria-label="Précédent"
+            onClick={(e) => { e.stopPropagation(); setOpen((i) => (i === null ? i : (i - 1 + photos.length) % photos.length)); }}
+            className="absolute left-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-cream/10 text-cream ring-1 ring-cream/30 backdrop-blur hover:bg-cream/20 md:left-6"
+          >
+            <ChevronRight className="h-5 w-5 rotate-180" />
+          </button>
+          <button
+            type="button"
+            aria-label="Suivant"
+            onClick={(e) => { e.stopPropagation(); setOpen((i) => (i === null ? i : (i + 1) % photos.length)); }}
+            className="absolute right-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-cream/10 text-cream ring-1 ring-cream/30 backdrop-blur hover:bg-cream/20 md:right-6"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+          <figure
+            className="flex max-h-full max-w-6xl flex-col items-center gap-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={photos[open].src}
+              alt={photos[open].caption}
+              className="max-h-[80vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl"
+            />
+            <figcaption className="max-w-2xl text-center text-sm text-cream/90">
+              {photos[open].caption}
+            </figcaption>
+          </figure>
+        </div>
+      )}
+    </section>
+  );
+}
+
 function Index() {
   return (
     <main className="min-h-screen">
@@ -964,6 +1108,7 @@ function Index() {
       <Formations />
       <Pharmacopee />
       <Videos />
+      <Gallery />
       <Contact />
       <Footer />
     </main>
