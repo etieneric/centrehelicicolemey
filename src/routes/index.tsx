@@ -8,18 +8,39 @@ import {
   Droplet, Coins, HandHeart, Globe2,
 } from "lucide-react";
 
-// Imports d'images physiques directes (retrait des extensions .asset.json)
-import logoAsset from "@/assets/logo.jpeg";
-import founderAsset from "@/assets/founder.png";
-import snailsAsset from "@/assets/snails.jpg";
-import im1Asset from "@/assets/im1.jpg";
-import im2Asset from "@/assets/im2.jpg";
-import im3Asset from "@/assets/im3.jpg";
-import im4Asset from "@/assets/im4.jpg";
-import archachatinaAsset from "@/assets/variete-1.png";
-import achatinaAchatinaAsset from "@/assets/variete-2.png";
-import achatinaFulicaAsset from "@/assets/variete-3.png";
-import oeufsAsset from "@/assets/oeufs.png";
+// Assets CDN (pointeurs .asset.json)
+import _logo from "@/assets/logo.jpeg.asset.json";
+import _founder from "@/assets/founder.png.asset.json";
+import _snails from "@/assets/snails.jpg.asset.json";
+import _im1 from "@/assets/im1.jpg.asset.json";
+import _im2 from "@/assets/im2.jpg.asset.json";
+import _im3 from "@/assets/im3.jpg.asset.json";
+import _im4 from "@/assets/im4.jpg.asset.json";
+import _v1 from "@/assets/variete-1.png.asset.json";
+import _v2 from "@/assets/variete-2.png.asset.json";
+import _v3 from "@/assets/variete-3.png.asset.json";
+import _oeufs from "@/assets/oeufs.png.asset.json";
+import _banner from "@/assets/chm-banner.jpeg.asset.json";
+import _ima6 from "@/assets/ima6.jpg.asset.json";
+import _ima7 from "@/assets/ima7.jpg.asset.json";
+import _ima8 from "@/assets/ima8.jpg.asset.json";
+import _ima9 from "@/assets/ima9.jpg.asset.json";
+const logoAsset = _logo.url;
+const founderAsset = _founder.url;
+const snailsAsset = _snails.url;
+const im1Asset = _im1.url;
+const im2Asset = _im2.url;
+const im3Asset = _im3.url;
+const im4Asset = _im4.url;
+const archachatinaAsset = _v1.url;
+const achatinaAchatinaAsset = _v2.url;
+const achatinaFulicaAsset = _v3.url;
+const oeufsAsset = _oeufs.url;
+const bannerAsset = _banner.url;
+const ima6Asset = _ima6.url;
+const ima7Asset = _ima7.url;
+const ima8Asset = _ima8.url;
+const ima9Asset = _ima9.url;
 import { getChannelVideos, type YoutubeVideo } from "@/lib/youtube.functions";
 
 export const Route = createFileRoute("/")({
