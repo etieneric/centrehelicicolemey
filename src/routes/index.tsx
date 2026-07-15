@@ -33,6 +33,8 @@ export const Route = createFileRoute("/")({
     meta: [
       { property: "og:image", content: snailsAsset },
       { name: "twitter:image", content: snailsAsset },
+      // Intégration de la balise HTML de validation Google Search Console
+      { name: "google-site-verification", content: "uTh1EZQwn9qwr7d5E8PDhwEJ4iBIZ8ZqSP2FujU09Ww" },
     ],
   }),
   component: Index,
@@ -499,7 +501,7 @@ function Pharmacopee() {
               {[
                 { t: "Écorces forestières", d: "Sélection minutieuse d'écorces aux vertus reconnues." },
                 { t: "Plantes médicinales", d: "Cultivées sans intrant chimique dans le jardin du centre." },
-                { t: "Préparations traditionnelles", d: "Savoir-faire hérité et documenté avec rigueur." },
+                { t: "Préparations traditionnelles", d: "Savoir-faire hérité et documenté avec rigreu." },
                 { t: "Écosystème intégré", d: "Symbiose entre élevage, forêt et pharmacopée." },
               ].map((c) => (
                 <div key={c.t} className="rounded-2xl border border-cream/15 bg-cream/5 p-5 backdrop-blur">
