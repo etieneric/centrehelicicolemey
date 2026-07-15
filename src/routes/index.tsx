@@ -984,6 +984,119 @@ function Founder() {
   );
 }
 
+function Gallery() {
+  const photos = [
+    { src: ima6Asset, caption: "Conférence institutionnelle — présentation du C.H.M" },
+    { src: ima7Asset, caption: "Formation & remise d'escargots aux femmes entrepreneures" },
+    { src: ima8Asset, caption: "Stand du C.H.M lors d'un salon agropastoral à Yaoundé" },
+    { src: ima9Asset, caption: "Récolte au centre — bassines d'escargots géants" },
+    { src: im1Asset, caption: "Session de formation pratique" },
+    { src: im2Asset, caption: "Pharmacopée & valorisation naturelle" },
+    { src: im3Asset, caption: "Interview de Daniel Meye" },
+    { src: im4Asset, caption: "Vie du centre hélicicole" },
+  ];
+  const [open, setOpen] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (open === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(null);
+      if (e.key === "ArrowRight") setOpen((i) => (i === null ? i : (i + 1) % photos.length));
+      if (e.key === "ArrowLeft") setOpen((i) => (i === null ? i : (i - 1 + photos.length) % photos.length));
+    };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open, photos.length]);
+
+  return (
+    <section id="galerie" className="bg-cream-deep/40 py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="max-w-2xl">
+          <span className="eyebrow">Galerie photo</span>
+          <h2 className="section-title mt-3">Événements, formations & activités du C.H.M</h2>
+          <p className="mt-4 text-muted-foreground">
+            Retour en images sur les conférences, formations et moments forts
+            du Centre Hélicicole Meye. Cliquez sur une photo pour l'afficher en plein écran.
+          </p>
+        </div>
+
+        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+          {photos.map((p, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setOpen(i)}
+              className="group relative aspect-square overflow-hidden rounded-2xl bg-cream ring-1 ring-forest/10 shadow-sm transition hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-terracotta"
+            >
+              <img
+                src={p.src}
+                alt={p.caption}
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest-deep/80 via-forest-deep/20 to-transparent p-3 opacity-0 transition group-hover:opacity-100">
+                <p className="text-xs text-cream line-clamp-2">{p.caption}</p>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {open !== null && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-forest-deep/95 p-4 backdrop-blur-sm"
+          onClick={() => setOpen(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            type="button"
+            aria-label="Fermer"
+            onClick={() => setOpen(null)}
+            className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-cream/10 text-cream ring-1 ring-cream/30 backdrop-blur hover:bg-cream/20"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            aria-label="Précédent"
+            onClick={(e) => { e.stopPropagation(); setOpen((i) => (i === null ? i : (i - 1 + photos.length) % photos.length)); }}
+            className="absolute left-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-cream/10 text-cream ring-1 ring-cream/30 backdrop-blur hover:bg-cream/20 md:left-6"
+          >
+            <ChevronRight className="h-5 w-5 rotate-180" />
+          </button>
+          <button
+            type="button"
+            aria-label="Suivant"
+            onClick={(e) => { e.stopPropagation(); setOpen((i) => (i === null ? i : (i + 1) % photos.length)); }}
+            className="absolute right-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-cream/10 text-cream ring-1 ring-cream/30 backdrop-blur hover:bg-cream/20 md:right-6"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+          <figure
+            className="flex max-h-full max-w-6xl flex-col items-center gap-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={photos[open].src}
+              alt={photos[open].caption}
+              className="max-h-[80vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl"
+            />
+            <figcaption className="max-w-2xl text-center text-sm text-cream/90">
+              {photos[open].caption}
+            </figcaption>
+          </figure>
+        </div>
+      )}
+    </section>
+  );
+}
+
 function Index() {
   return (
     <main className="min-h-screen">
