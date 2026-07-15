@@ -1108,6 +1108,7 @@ function Index() {
       <Formations />
       <Pharmacopee />
       <Videos />
+      <Gallery />
       <Contact />
       <Footer />
     </main>
