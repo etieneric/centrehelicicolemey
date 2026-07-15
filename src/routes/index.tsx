@@ -124,7 +124,7 @@ function Hero() {
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
               Pionnier de l'élevage des Escargots Géants d'Afrique, formateur et
-              expert en agro-écologie urbaine à Messamendongo.
+              expert en agro-écologie urbaine au Cameroun.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -867,7 +867,7 @@ function Founder() {
           <div className="lg:col-span-7">
             <span className="eyebrow">Biographie & Vision du fondateur</span>
             <h2 className="section-title mt-3">
-              MEYE ME ZO'O Daniel, pioneer de l'<em className="not-italic text-terracotta">héliciculture</em> camerounaise.
+              MEYE ME ZO'O Daniel, pionnier de l'<em className="not-italic text-terracotta">héliciculture</em> camerounaise.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
               Acteur de l'autonomisation des femmes et des jeunes à Yaoundé,
@@ -919,7 +919,7 @@ function Founder() {
                 Ce système circulaire permet non seulement de produire des
                 escargots destinés à la consommation et au commerce, mais aussi
                 de réduire les déchets urbains et de contribuer à la
-                reforestation en milieu urbain.
+                reforestation en zone urbaine, pé-urbaine et rurale.
               </p>
               <p>
                 Pour Daniel Meye, l'héliciculture — facile à mettre en œuvre,
