@@ -27,6 +27,8 @@ import ima8Asset from "@/assets/ima8.jpg";
 import ima9Asset from "@/assets/ima9.jpg";
 
 import { getChannelVideos, type YoutubeVideo } from "@/lib/youtube.functions";
+import { supabase } from "@/integrations/supabase/client";
+import { Events } from "@/components/public/Events";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -53,6 +55,7 @@ const NAV = [
   { label: "Produits", href: "#produits" },
   { label: "Pharmacopée", href: "#pharmacopee" },
   { label: "Vidéos", href: "#videos" },
+  { label: "Événements", href: "#evenements" },
   { label: "Galerie", href: "#galerie" },
   { label: "Contact", href: "#contact" },
 ];
@@ -1085,6 +1088,7 @@ function Index() {
       <Formations />
       <Pharmacopee />
       <Videos />
+      <Events />
       <Gallery />
       <Contact />
       <Footer />
