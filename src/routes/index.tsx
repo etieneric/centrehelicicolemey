@@ -965,7 +965,7 @@ function Founder() {
 }
 
 function Gallery() {
-  const photos = [
+  const defaults = [
     { src: ima6Asset, caption: "Conférence institutionnelle — présentation du C.H.M" },
     { src: ima7Asset, caption: "Formation & remise d'escargots aux femmes entrepreneures" },
     { src: ima8Asset, caption: "Stand du C.H.M lors d'un salon agropastoral à Yaoundé" },
@@ -975,6 +975,20 @@ function Gallery() {
     { src: im3Asset, caption: "Interview de Daniel Meye" },
     { src: im4Asset, caption: "Vie du centre hélicicole" },
   ];
+  const { data: remote } = useQuery({
+    queryKey: ["public-gallery"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("gallery_photos")
+        .select("image_url, caption")
+        .order("sort_order", { ascending: true });
+      if (error) throw error;
+      return data ?? [];
+    },
+  });
+  const photos = remote && remote.length > 0
+    ? remote.map((p) => ({ src: p.image_url, caption: p.caption ?? "" }))
+    : defaults;
   const [open, setOpen] = useState<number | null>(null);
 
   useEffect(() => {
