@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import type { GateSession } from "./gate.server";
 
 export const checkAdminSession = createServerFn({ method: "GET" }).handler(async () => {
   const { isAdminUnlocked } = await import("./gate.server");
@@ -15,7 +16,7 @@ export const unlockAdmin = createServerFn({ method: "POST" })
   })
   .handler(async ({ data }) => {
     const { useSession } = await import("@tanstack/react-start/server");
-    const { getSessionConfig, passwordMatches, type GateSession } = await import("./gate.server");
+    const { getSessionConfig, passwordMatches } = await import("./gate.server");
     const expected = process.env.SITE_PASSWORD;
     if (!expected) throw new Error("SITE_PASSWORD non configuré");
     if (!passwordMatches(data.password, expected)) {
@@ -28,7 +29,7 @@ export const unlockAdmin = createServerFn({ method: "POST" })
 
 export const lockAdmin = createServerFn({ method: "POST" }).handler(async () => {
   const { useSession } = await import("@tanstack/react-start/server");
-  const { getSessionConfig, type GateSession } = await import("./gate.server");
+  const { getSessionConfig } = await import("./gate.server");
   const session = await useSession<GateSession>(getSessionConfig());
   await session.clear();
   return { ok: true as const };
