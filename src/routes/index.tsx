@@ -108,8 +108,8 @@ function Nav() {
                 {l.label}
               </a>
             ))}
-            <a href={`tel:${PHONE_1.replace(/\s/g, "")}`} className="btn-primary mt-2 justify-center inline-flex items-center gap-2">
-              <Phone className="h-4 w-4" /> Appeler ({PHONE_1})
+            <a href={`tel:${PHONE_1.replace(/\s/g, "")}`} className="btn-primary mt-2 justify-center inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium">
+              <Phone className="h-3.5 w-3.5" /> Appeler
             </a>
           </div>
         )}
