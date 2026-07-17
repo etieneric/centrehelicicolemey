@@ -1,4 +1,4 @@
-import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Outlet, redirect, useLocation, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { LogOut, Images, CalendarPlus } from "lucide-react";
@@ -8,12 +8,20 @@ import { EventsManager } from "@/components/admin/EventsManager";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin — C.H.M" }, { name: "robots", content: "noindex" }] }),
-  beforeLoad: async () => {
+  beforeLoad: async ({ location }) => {
+    // /admin/login is a child route of /admin. It must stay public or the
+    // parent guard redirects the login page to itself forever.
+    if (location.pathname === "/admin/login") return;
     const { unlocked } = await checkAdminSession();
     if (!unlocked) throw redirect({ to: "/admin/login" });
   },
-  component: AdminHome,
+  component: AdminRoute,
 });
+
+function AdminRoute() {
+  const location = useLocation();
+  return location.pathname === "/admin/login" ? <Outlet /> : <AdminHome />;
+}
 
 function AdminHome() {
   const [tab, setTab] = useState<"gallery" | "events">("gallery");
