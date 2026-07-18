@@ -17,10 +17,10 @@ function LoginPage() {
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
+    const password = String(new FormData(e.currentTarget as HTMLFormElement).get("password") ?? "");
     setLoading(true);
     setError(null);
     try {
-      const password = String(new FormData(e.currentTarget).get("password") ?? "");
       const res = await unlock({ data: { password } });
       if (res.ok) {
         await navigate({ to: "/admin" });
