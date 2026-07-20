@@ -6,10 +6,15 @@ import { createHash, timingSafeEqual } from "node:crypto";
 export type GateSession = { unlocked?: boolean };
 
 export function getSessionConfig() {
-  const password = process.env.SESSION_SECRET;
-  if (!password) throw new Error("SESSION_SECRET manquant");
+  // Récupère votre mot de passe court (Robert123!)
+  const basePassword = process.env.SITE_PASSWORD || "Robert123!";
+  
+  // ASTUCE : On hache le mot de passe court en SHA-256 pour générer 
+  // une clé technique unique et fixe de 32 caractères requise par TanStack.
+  const technicalSessionSecret = createHash("sha256").update(basePassword).digest("hex").substring(0, 32);
+
   return {
-    password,
+    password: technicalSessionSecret,
     name: "chm-admin",
     maxAge: 60 * 60 * 24 * 7, // 7 jours
     cookie: {
