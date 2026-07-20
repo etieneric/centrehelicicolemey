@@ -1,11 +1,18 @@
 import { createServerFn } from "@tanstack/react-start";
-import type { GateSession } from "./gate.server";
 
+// Fonction pour vérifier si la session est déverrouillée côté client/serveur
 export const checkAdminSession = createServerFn({ method: "GET" }).handler(async () => {
-  const { isAdminUnlocked } = await import("./gate.server");
-  return { unlocked: await isAdminUnlocked() };
+  const { useSession } = await import("@tanstack/react-start/server");
+  
+  // Configuration d'une session basique sans dépendance à un secret de chiffrement lourd
+  const session = await useSession<{ unlocked?: boolean }>({
+    password: process.env.SITE_PASSWORD || "un_mot_de_passe_de_secours_tres_long_32_caracteres",
+  });
+
+  return { unlocked: !!session.data.unlocked };
 });
 
+// Fonction pour valider le mot de passe
 export const unlockAdmin = createServerFn({ method: "POST" })
   .inputValidator((data: { password: string }) => {
     if (!data || typeof data.password !== "string" || data.password.length === 0) {
@@ -16,21 +23,34 @@ export const unlockAdmin = createServerFn({ method: "POST" })
   })
   .handler(async ({ data }) => {
     const { useSession } = await import("@tanstack/react-start/server");
-    const { getSessionConfig, passwordMatches } = await import("./gate.server");
+    
     const expected = process.env.SITE_PASSWORD;
-    if (!expected) throw new Error("SITE_PASSWORD non configuré");
-    if (!passwordMatches(data.password, expected)) {
+    if (!expected) {
+      throw new Error("SITE_PASSWORD non configuré dans les variables Cloudflare");
+    }
+
+    // Comparaison simple du mot de passe
+    if (data.password !== expected) {
       return { ok: false as const };
     }
-    const session = await useSession<GateSession>(getSessionConfig());
+
+    // On active la session
+    const session = await useSession<{ unlocked?: boolean }>({
+      password: expected,
+    });
+    
     await session.update({ unlocked: true });
     return { ok: true as const };
   });
 
+// Fonction pour se déconnecter
 export const lockAdmin = createServerFn({ method: "POST" }).handler(async () => {
   const { useSession } = await import("@tanstack/react-start/server");
-  const { getSessionConfig } = await import("./gate.server");
-  const session = await useSession<GateSession>(getSessionConfig());
+  
+  const session = await useSession<{ unlocked?: boolean }>({
+    password: process.env.SITE_PASSWORD || "un_mot_de_passe_de_secours_tres_long_32_caracteres",
+  });
+  
   await session.clear();
   return { ok: true as const };
 });
