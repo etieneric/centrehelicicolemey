@@ -792,7 +792,7 @@ function Footer() {
               <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0" /> Messamendongo, Yaoundé — Cameroun</li>
               <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4 shrink-0" /> {PHONE_1}</li>
               <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4 shrink-0" /> {PHONE_2}</li>
-              <li className="flex items-start gap-2"><Mail className="mt-0.5 h-4 w-4 shrink-0" /> contact@centrehelicicolemeye.cm</li>
+              <li className="flex items-start gap-2"><Mail className="mt-0.5 h-4 w-4 shrink-0" /> centrehelicicolemeye@gmail.com</li>
             </ul>
           </div>
         </div>
