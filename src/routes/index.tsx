@@ -42,8 +42,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const PHONE_1 = "699 53 47 29";
-const PHONE_2 = "674 67 49 02";
+const PHONE_1 = "+237 699534729";
+const PHONE_2 = "+237 674674902";
 const YOUTUBE_URL = "https://www.youtube.com/channel/UC_KpRmZCEQKcykn7XS4oGUw";
 const FACEBOOK_URL = "https://facebook.com/centrehelicicolemeye";
 
